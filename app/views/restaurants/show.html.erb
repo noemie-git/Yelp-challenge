@@ -1,9 +1,30 @@
-<h1><%= @restaurant.name %></h1>
+<p id="notice"><%= notice %></p>
 
-<p>Category: <%= @restaurant.category %></p>
+<p>
+  <strong>Name:</strong>
+  <%= @restaurant.name %>
+</p>
 
-<p>Address: <%= @restaurant.address %></p>
+<p>
+<strong>Category: </strong>
+<%= @restaurant.category %>
+</p>
 
-<p>Phone Number: <%= @restaurant.phone_number %></p>
+<p>
+  <strong>Address:</strong>
+  <%= @restaurant.address %>
+</p>
 
-<%= link_to "< All restaurants", restaurants_path %>
+<p>
+<strong>Phone Number: </strong>
+<%= @restaurant.phone_number %>
+</p>
+
+<%= link_to 'Leave a review', new_restaurant_review_path(@restaurant) %>
+<% @restaurant.reviews.each do | review|  %>
+  <p><%= review.content %> </p>
+  <%= link_to "Delete", review_path(review), method: :delete, data: { confirm: "Are you sure?"}  %>
+  <hr>
+<% end %>
+
+<%= link_to '< All restaurants', restaurants_path %>
